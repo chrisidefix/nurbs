@@ -1,0 +1,17 @@
+***************
+*** 27,33 ****
+  
+  namespace PLib {
+  
+- ostream& 
+  Basic2DArray<unsigned char>::print(ostream& os) const
+  {
+    int i, j;
+--- 27,33 ----
+  
+  namespace PLib {
+  
++ template <> ostream& 
+  Basic2DArray<unsigned char>::print(ostream& os) const
+  {
+    int i, j;

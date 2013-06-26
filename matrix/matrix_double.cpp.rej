@@ -1,0 +1,17 @@
+***************
+*** 27,33 ****
+  
+  namespace PLib {
+    
+-   void Matrix<double>::qSort(){
+      qsort((char*)m,rows()*cols(),sizeof(double),compareDouble) ;
+    }
+  
+--- 27,33 ----
+  
+  namespace PLib {
+    
++   template <> void Matrix<double>::qSort(){
+      qsort((char*)m,rows()*cols(),sizeof(double),compareDouble) ;
+    }
+  

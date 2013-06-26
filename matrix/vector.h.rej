@@ -1,0 +1,17 @@
+***************
+*** 69,75 ****
+    {
+    public:
+      int rows() const //!< a reference to the size of the vector
+-       { return sze ;}
+      Vector() : BasicArray<T>(1) {} //!< Basic constructor
+      Vector(const int r) : BasicArray<T>(r) {}
+      Vector(const Vector<T>& v) : BasicArray<T>(v) {}
+--- 69,75 ----
+    {
+    public:
+      int rows() const //!< a reference to the size of the vector
++       { return this->sze ;}
+      Vector() : BasicArray<T>(1) {} //!< Basic constructor
+      Vector(const int r) : BasicArray<T>(r) {}
+      Vector(const Vector<T>& v) : BasicArray<T>(v) {}

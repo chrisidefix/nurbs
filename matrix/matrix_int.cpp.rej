@@ -1,0 +1,76 @@
+***************
+*** 29,39 ****
+  
+  namespace PLib {
+  
+-   void Matrix<int>::qSort(){
+      qsort((char*)m,rows()*cols(),sizeof(int),compareInt) ;
+    }
+    
+-   Matrix<int>&
+      Matrix<int>::operator*=(double a)
+      {
+        int *p1 ;
+--- 29,39 ----
+  
+  namespace PLib {
+  
++   template <> void Matrix<int>::qSort(){
+      qsort((char*)m,rows()*cols(),sizeof(int),compareInt) ;
+    }
+    
++   template <> Matrix<int>&
+      Matrix<int>::operator*=(double a)
+      {
+        int *p1 ;
+***************
+*** 46,52 ****
+        return *this ;
+      }
+    
+-   Matrix<int>&
+      Matrix<int>::operator+=(double a)
+      {
+        int *p1 ;
+--- 46,52 ----
+        return *this ;
+      }
+    
++   template <> Matrix<int>&
+      Matrix<int>::operator+=(double a)
+      {
+        int *p1 ;
+***************
+*** 57,63 ****
+        return *this ;
+      }
+  
+-   Matrix<int>&
+      Matrix<int>::operator-=(double a)
+      {
+        int *p1 ;
+--- 57,63 ----
+        return *this ;
+      }
+  
++   template <> Matrix<int>&
+      Matrix<int>::operator-=(double a)
+      {
+        int *p1 ;
+***************
+*** 68,74 ****
+        return *this ;
+      }
+    
+-   Matrix<int>&
+      Matrix<int>::operator/=(double a)
+      {
+        int *p1 ;
+--- 68,74 ----
+        return *this ;
+      }
+    
++   template <> Matrix<int>&
+      Matrix<int>::operator/=(double a)
+      {
+        int *p1 ;

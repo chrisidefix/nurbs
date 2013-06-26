@@ -1,0 +1,418 @@
+***************
+*** 51,66 ****
+    if(this==&b)
+      return *this ;
+  
+-   if ( n() != b.n())
+      {
+        resize(b.n()) ;
+      }
+  
+-   sze = b.n() ;
+    T *pa, *pb ;
+-   pa = x-1 ;
+    pb = b.x-1 ;
+-   for(int i=n();i>0;--i){
+      *(++pa) = *(++pb) ;
+    }
+    return *this;
+--- 51,66 ----
+    if(this==&b)
+      return *this ;
+  
++   if ( this->n() != b.n())
+      {
+        resize(b.n()) ;
+      }
+  
++   this->sze = b.n() ;
+    T *pa, *pb ;
++   pa = this->x-1 ;
+    pb = b.x-1 ;
++   for(int i=this->n();i>0;--i){
+      *(++pa) = *(++pb) ;
+    }
+    return *this;
+***************
+*** 79,91 ****
+  template <class T>
+  Vector<T>& Vector<T>::operator=(const BasicArray<T> &b)
+  {
+-   if ( size() != b.size())
+      {
+        resize(b.size()) ;
+      }
+    T *ptr ;
+-   ptr = x - 1 ;
+-   for(int i=size()-1;i>=0;--i)
+       *(++ptr) = b[i] ;
+  
+    return *this;
+--- 79,91 ----
+  template <class T>
+  Vector<T>& Vector<T>::operator=(const BasicArray<T> &b)
+  {
++   if ( this->size() != b.size())
+      {
+        resize(b.size()) ;
+      }
+    T *ptr ;
++   ptr = this->x - 1 ;
++   for(int i=this->size()-1;i>=0;--i)
+       *(++ptr) = b[i] ;
+  
+    return *this;
+***************
+*** 105,113 ****
+  template <class T>
+  T Vector<T>::operator=(const T d)
+  {
+-   const int sz = size(); 
+    T *ptr ;
+-   ptr = x-1 ;
+    for (int i = sz; i > 0; --i)
+      *(++ptr) = d ;
+  
+--- 105,113 ----
+  template <class T>
+  T Vector<T>::operator=(const T d)
+  {
++   const int sz = this->size(); 
+    T *ptr ;
++   ptr = this->x-1 ;
+    for (int i = sz; i > 0; --i)
+      *(++ptr) = d ;
+  
+***************
+*** 130,148 ****
+  template <class T>
+  Vector<T>& Vector<T>::operator+=(const Vector<T> &a)
+  {
+-   if ( a.size() != size())
+      {
+  #ifdef USE_EXCEPTION
+-       throw WrongSize(size(),a.size()) ;
+  #else
+        Error error("Vector<T>::operator+=(Vector<T>&)");
+        error << "Vector<T> a += Vector<T> b different sizes, a = " << size() << ", b = " << a.size() ;
+        error.fatal() ;
+  #endif
+      }
+-   const int sz = size();
+    T *ptr,*aptr ;
+-   ptr = x-1 ;
+    aptr = a.x-1 ;
+    for (int i = sz; i >0; --i)
+      *(++ptr) += *(++aptr) ;
+--- 130,148 ----
+  template <class T>
+  Vector<T>& Vector<T>::operator+=(const Vector<T> &a)
+  {
++   if ( a.size() != this->size())
+      {
+  #ifdef USE_EXCEPTION
++       throw WrongSize(this->size(),a.size()) ;
+  #else
+        Error error("Vector<T>::operator+=(Vector<T>&)");
+        error << "Vector<T> a += Vector<T> b different sizes, a = " << size() << ", b = " << a.size() ;
+        error.fatal() ;
+  #endif
+      }
++   const int sz = this->size();
+    T *ptr,*aptr ;
++   ptr = this->x-1 ;
+    aptr = a.x-1 ;
+    for (int i = sz; i >0; --i)
+      *(++ptr) += *(++aptr) ;
+***************
+*** 165,174 ****
+  template <class T>
+  Vector<T>& Vector<T>::operator-=(const Vector<T> &a)
+  {
+-   if ( a.size() != size())
+      {
+  #ifdef USE_EXCEPTION
+-       throw WrongSize(size(),a.size()) ;
+  #else
+        Error error("Vector<T>::operator-=(Vector<T>&)");
+        error << "Vector<T> a -= Vector<T> b different sizes, a = " << size() << ", b = " << a.size() ;
+--- 165,174 ----
+  template <class T>
+  Vector<T>& Vector<T>::operator-=(const Vector<T> &a)
+  {
++   if ( a.size() != this->size())
+      {
+  #ifdef USE_EXCEPTION
++       throw WrongSize(this->size(),a.size()) ;
+  #else
+        Error error("Vector<T>::operator-=(Vector<T>&)");
+        error << "Vector<T> a -= Vector<T> b different sizes, a = " << size() << ", b = " << a.size() ;
+***************
+*** 176,184 ****
+  #endif
+      }
+    
+-   const int sz = size(); 
+    T *ptr,*aptr ;
+-   ptr = x-1 ;
+    aptr = a.x-1 ;
+    for (int i = sz; i > 0; --i)
+      *(++ptr) -= *(++aptr) ;
+--- 176,184 ----
+  #endif
+      }
+    
++   const int sz = this->size(); 
+    T *ptr,*aptr ;
++   ptr = this->x-1 ;
+    aptr = a.x-1 ;
+    for (int i = sz; i > 0; --i)
+      *(++ptr) -= *(++aptr) ;
+***************
+*** 391,397 ****
+      }
+  
+    T *aptr,*bptr ;
+-   aptr = &x[i]-1 ;
+    bptr = b.x-1 ;
+    for ( int j = b.rows(); j > 0; --j)
+        *(++aptr) = *(++bptr) ;
+--- 391,397 ----
+      }
+  
+    T *aptr,*bptr ;
++   aptr = &this->x[i]-1 ;
+    bptr = b.x-1 ;
+    for ( int j = b.rows(); j > 0; --j)
+        *(++aptr) = *(++bptr) ;
+***************
+*** 429,435 ****
+  
+    Vector<T> subvec(l) ;
+    T *aptr, *bptr ;
+-   aptr = &x[i] - 1 ;
+    bptr = subvec.x -1 ;
+    for ( int j = l; j > 0; --j)
+      *(++bptr) = *(++aptr) ;
+--- 429,435 ----
+  
+    Vector<T> subvec(l) ;
+    T *aptr, *bptr ;
++   aptr = &this->x[i] - 1 ;
+    bptr = subvec.x -1 ;
+    for ( int j = l; j > 0; --j)
+      *(++bptr) = *(++aptr) ;
+***************
+*** 449,460 ****
+  */
+  template <class T>
+  int Vector<T>::minIndex() const {
+-   T min = x[0] ;
+    int index = 0 ;
+  
+-   for(int i=1;i<n();i++){
+-     if(x[i]<=min){
+-       min = x[i] ;
+        index = i ;
+      }
+    }
+--- 449,460 ----
+  */
+  template <class T>
+  int Vector<T>::minIndex() const {
++   T min = this->x[0] ;
+    int index = 0 ;
+  
++   for(int i=1;i<this->n();i++){
++     if(this->x[i]<=min){
++       min = this->x[i] ;
+        index = i ;
+      }
+    }
+***************
+*** 523,534 ****
+    T a ;
+    T *v1,*v2  ;
+  
+-   ir = sze-1 ;
+    l = 0 ;
+    
+    while(1){
+      if(ir-l<M){ // perform an insertion sort when the array is small enough
+-       v1 = &x[l] ;
+        for(j=l+1;j<=ir;++j){
+  	a = *(++v1) ;
+  	v2 = v1 ;
+--- 523,534 ----
+    T a ;
+    T *v1,*v2  ;
+  
++   ir = this->sze-1 ;
+    l = 0 ;
+    
+    while(1){
+      if(ir-l<M){ // perform an insertion sort when the array is small enough
++       v1 = &this->x[l] ;
+        for(j=l+1;j<=ir;++j){
+  	a = *(++v1) ;
+  	v2 = v1 ;
+***************
+*** 547,577 ****
+      }
+      else{
+        k=(l+ir) >> 1 ;
+-       swap(x[k],x[l+1]) ;
+-       if(x[l+1] > x[ir]){
+- 	swap(x[l+1],x[ir]) ;
+        }
+-       if(x[l]> x[ir]){
+- 	swap(x[l],x[ir]) ;
+        }
+-       if(x[l+1] > x[l]){
+- 	swap(x[l+1],x[l]) ;
+        }
+        i=l+1 ;
+        j=ir ;
+-       a=x[l] ;
+-       v1 = &x[i] ;
+-       v2 = &x[j] ;
+        while(1){
+  	while(*v1 < a) { ++i ; ++v1 ; }
+  	while(*v2 > a) { --j ; --v2 ; }
+  	if(j<i) break ;
+  	if(*v1 == *v2)  // both are equal to a...
+  	  break ;
+- 	swap(x[i],x[j]) ;
+        }
+-       x[l] = x[j] ;
+-       x[j] = a ;
+        jstack += 2 ;
+        if(jstack>=Nstack){
+  	istack.resize(istack.n()+Nstack) ; // increase the vector size
+--- 547,577 ----
+      }
+      else{
+        k=(l+ir) >> 1 ;
++       swap(this->x[k],this->x[l+1]) ;
++       if(this->x[l+1] > this->x[ir]){
++ 	swap(this->x[l+1],this->x[ir]) ;
+        }
++       if(this->x[l]> this->x[ir]){
++ 	swap(this->x[l],this->x[ir]) ;
+        }
++       if(this->x[l+1] > this->x[l]){
++ 	swap(this->x[l+1],this->x[l]) ;
+        }
+        i=l+1 ;
+        j=ir ;
++       a=this->x[l] ;
++       v1 = &this->x[i] ;
++       v2 = &this->x[j] ;
+        while(1){
+  	while(*v1 < a) { ++i ; ++v1 ; }
+  	while(*v2 > a) { --j ; --v2 ; }
+  	if(j<i) break ;
+  	if(*v1 == *v2)  // both are equal to a...
+  	  break ;
++ 	swap(this->x[i],this->x[j]) ;
+        }
++       this->x[l] = this->x[j] ;
++       this->x[j] = a ;
+        jstack += 2 ;
+        if(jstack>=Nstack){
+  	istack.resize(istack.n()+Nstack) ; // increase the vector size
+***************
+*** 618,627 ****
+    int jstack=0;
+    T a ;
+  
+-   ir = sze-1 ;
+    l = 0 ;
+    
+-   index.resize(sze) ;
+    for(i=0;i<index.n();++i)
+      index[i] = i ;
+  
+--- 618,627 ----
+    int jstack=0;
+    T a ;
+  
++   ir = this->sze-1 ;
+    l = 0 ;
+    
++   index.resize(this->sze) ;
+    for(i=0;i<index.n();++i)
+      index[i] = i ;
+  
+***************
+*** 629,637 ****
+      if(ir-l<M){ // perform an insertion sort when the array is small enough
+        for(j=l+1;j<=ir;++j){
+  	indext = index[j] ;
+- 	a = x[indext] ;
+  	for(i=j-1;i>=0;--i){
+- 	  if(x[index[i]] <= a) break ;
+  	  index[i+1] = index[i] ;
+  	}
+  	index[i+1] = indext ;
+--- 629,637 ----
+      if(ir-l<M){ // perform an insertion sort when the array is small enough
+        for(j=l+1;j<=ir;++j){
+  	indext = index[j] ;
++ 	a = this->x[indext] ;
+  	for(i=j-1;i>=0;--i){
++ 	  if(this->x[index[i]] <= a) break ;
+  	  index[i+1] = index[i] ;
+  	}
+  	index[i+1] = indext ;
+***************
+*** 643,666 ****
+      else{
+        k=(l+ir) >> 1 ;
+        swap(index[k],index[l+1]) ;
+-       if(x[index[l+1]] > x[index[ir]]){
+  	swap(index[l+1],index[ir]) ;
+        }
+-       if(x[index[l]]> x[index[ir]]){
+  	swap(index[l],index[ir]) ;
+        }
+-       if(x[index[l+1]] > x[index[l]]){
+  	swap(index[l+1],index[l]) ;
+        }
+        i=l+1 ;
+        j=ir ;
+        indext = index[l] ;
+-       a=x[indext] ;
+        while(1){
+- 	while(x[index[i]] < a) { ++i ; }
+- 	while(x[index[j]] > a) { --j ; }
+  	if(j<i) break ;
+- 	if(x[index[i]] == x[index[j]])
+  	  break ;
+  	swap(index[i],index[j]) ;
+        }
+--- 643,666 ----
+      else{
+        k=(l+ir) >> 1 ;
+        swap(index[k],index[l+1]) ;
++       if(this->x[index[l+1]] > this->x[index[ir]]){
+  	swap(index[l+1],index[ir]) ;
+        }
++       if(this->x[index[l]]> this->x[index[ir]]){
+  	swap(index[l],index[ir]) ;
+        }
++       if(this->x[index[l+1]] > this->x[index[l]]){
+  	swap(index[l+1],index[l]) ;
+        }
+        i=l+1 ;
+        j=ir ;
+        indext = index[l] ;
++       a=this->x[indext] ;
+        while(1){
++ 	while(this->x[index[i]] < a) { ++i ; }
++ 	while(this->x[index[j]] > a) { --j ; }
+  	if(j<i) break ;
++ 	if(this->x[index[i]] == this->x[index[j]])
+  	  break ;
+  	swap(index[i],index[j]) ;
+        }

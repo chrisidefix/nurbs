@@ -1,0 +1,68 @@
+***************
+*** 27,33 ****
+  
+  namespace PLib {
+  
+-   Matrix<char>&
+      Matrix<char>::operator*=(double a)
+      {
+        char *p1 ;
+--- 27,33 ----
+  
+  namespace PLib {
+  
++   template <> Matrix<char>&
+      Matrix<char>::operator*=(double a)
+      {
+        char *p1 ;
+***************
+*** 40,46 ****
+        return *this ;
+      }
+    
+-   Matrix<char>&
+      Matrix<char>::operator+=(double a)
+      {
+        char *p1 ;
+--- 40,46 ----
+        return *this ;
+      }
+    
++   template <> Matrix<char>&
+      Matrix<char>::operator+=(double a)
+      {
+        char *p1 ;
+***************
+*** 51,57 ****
+        return *this ;
+      }
+    
+-   Matrix<char>&
+      Matrix<char>::operator-=(double a)
+      {
+        char *p1 ;
+--- 51,57 ----
+        return *this ;
+      }
+    
++   template <> Matrix<char>&
+      Matrix<char>::operator-=(double a)
+      {
+        char *p1 ;
+***************
+*** 62,68 ****
+        return *this ;
+      }
+    
+-   Matrix<char>&
+      Matrix<char>::operator/=(double a)
+      {
+        char *p1 ;
+--- 62,68 ----
+        return *this ;
+      }
+    
++   template <> Matrix<char>&
+      Matrix<char>::operator/=(double a)
+      {
+        char *p1 ;

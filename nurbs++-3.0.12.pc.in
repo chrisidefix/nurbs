@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: NURBS++
+Description: NURBS++ library
+Requires: 
+Version: 3.0.12
+Libs: -L${libdir} -lnurbsf -lmatrixN -lmatrixI -lmatrix
+Cflags: -I${includedir}

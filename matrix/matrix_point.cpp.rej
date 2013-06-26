@@ -1,0 +1,68 @@
+***************
+*** 27,33 ****
+  
+  namespace PLib {
+  
+-   double
+      Matrix<Point3Df>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+--- 27,33 ----
+  
+  namespace PLib {
+  
++   template <> double
+      Matrix<Point3Df>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+***************
+*** 55,61 ****
+      return sqrt(maxsum);
+    }
+    
+-   double
+      Matrix<Point3Dd>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+--- 55,61 ----
+      return sqrt(maxsum);
+    }
+    
++   template <> double
+      Matrix<Point3Dd>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+***************
+*** 83,89 ****
+      return sqrt(maxsum);
+    }
+    
+-   double
+      Matrix<Point2Df>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+--- 83,89 ----
+      return sqrt(maxsum);
+    }
+    
++   template <> double
+      Matrix<Point2Df>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+***************
+*** 111,117 ****
+      return sqrt(maxsum);
+    }
+  
+-   double
+      Matrix<Point2Dd>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;
+--- 111,117 ----
+      return sqrt(maxsum);
+    }
+  
++   template <> double
+      Matrix<Point2Dd>::norm(void) {
+      int i,j ;
+      double sumX, sumY, sumZ, maxsum;

@@ -1,0 +1,68 @@
+***************
+*** 27,33 ****
+  
+  namespace PLib {
+  
+-   Matrix<unsigned char>&
+      Matrix<unsigned char>::operator*=(double a)
+      {
+        unsigned char *p1 ;
+--- 27,33 ----
+  
+  namespace PLib {
+  
++   template <> Matrix<unsigned char>&
+      Matrix<unsigned char>::operator*=(double a)
+      {
+        unsigned char *p1 ;
+***************
+*** 40,46 ****
+        return *this ;
+      }
+    
+-   Matrix<unsigned char>&
+      Matrix<unsigned char>::operator+=(double a)
+      {
+        unsigned char *p1 ;
+--- 40,46 ----
+        return *this ;
+      }
+    
++   template <> Matrix<unsigned char>&
+      Matrix<unsigned char>::operator+=(double a)
+      {
+        unsigned char *p1 ;
+***************
+*** 52,58 ****
+      }
+    
+    
+-   Matrix<unsigned char>&
+      Matrix<unsigned char>::operator-=(double a)
+      {
+        unsigned char *p1 ;
+--- 52,58 ----
+      }
+    
+    
++   template <> Matrix<unsigned char>&
+      Matrix<unsigned char>::operator-=(double a)
+      {
+        unsigned char *p1 ;
+***************
+*** 64,70 ****
+      }
+    
+    
+-   Matrix<unsigned char>&
+      Matrix<unsigned char>::operator/=(double a)
+      {
+        unsigned char *p1 ;
+--- 64,70 ----
+      }
+    
+    
++   template <> Matrix<unsigned char>&
+      Matrix<unsigned char>::operator/=(double a)
+      {
+        unsigned char *p1 ;
