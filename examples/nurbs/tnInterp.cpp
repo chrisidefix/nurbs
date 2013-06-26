@@ -38,10 +38,10 @@ int main(){
   curveC.leastSquares(points,3,8) ;
   curveD.globalInterpD(points,deriv,3,1) ;
 
-  curveA.writePS("tnInterpA.ps",1,2.0) ;
-  curveB.writePS("tnInterpB.ps",1,2.0) ;
-  curveC.writePS("tnInterpC.ps",1,2.0) ;
-  curveD.writePS("tnInterpD.ps",1,2.0) ;
+  curveA.writePSp("tnInterpA.ps", points, Vector< Point_nD<float, 3> >(), 1, 2.0);
+  curveB.writePSp("tnInterpB.ps", points, Vector< Point_nD<float, 3> >(), 1, 2.0);
+  curveC.writePSp("tnInterpC.ps", points, Vector< Point_nD<float, 3> >(), 1, 2.0);
+  curveD.writePSp("tnInterpD.ps", points, Vector< Point_nD<float, 3> >(), 1, 2.0);
 
   #ifdef WITH_IMAGE_MAGICK
   IM_ColorImage result ;
